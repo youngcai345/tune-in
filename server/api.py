@@ -47,6 +47,11 @@ user_id = None
 user_name = None
 user_profile_pic = None
 
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+
 @app.route('/api/login')
 def login_user():
     global user_id, user_name, user_profile_pic, spotify_obj, top_artists_all_terms, top_tracks_all_terms
@@ -229,5 +234,9 @@ def leave_party(): # on click
             db.delete_user_from_party(user_id, party_id, session)
     # redirect to homepage or party directory
 """
+"""
 if __name__ == "__main__":    
     app.run(debug=True)
+"""
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
